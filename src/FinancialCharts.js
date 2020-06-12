@@ -75,40 +75,36 @@ static defaultProps={
     return ( 
       <div>
         
-    
+      <Bar
+      data={this.state.chartData1}
+      options={{
+          responsive:true,
+        title:{
+            display:this.props.displayTitle,
+            text:'Income and Expense',
+            fontSize:20
+      },
+    legend:{
+        display:true,
+        position: 'right',
+        labels:{
+            fontColor:'#000'
+        }
+    },
+    layout:{
+        padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+        }
+    },        
+tooltips:{
+    enabled: true
+}}}
+    />    
 
-
-<Bar
-          data={this.state.chartData1}
-          options={{
-            responsive:true,
-            title:{
-                display:this.props.displayTitle,
-                text:'Income and Expense',
-                fontSize:20
-          },
-        legend:{
-            display:true,
-            position: 'right',
-            labels:{
-                fontColor:'#000'
-            }
-        },
-        layout:{
-            padding:{
-                left:50,
-                right:0,
-                bottom:50,
-                top:50
-            }
-        },        
-    tooltips:{
-        enabled: true
-    }}}
-        />
-
-        
-<Line
+    <Line
           data={this.state.chartData2}
           options={{
             responsive:true,
@@ -128,15 +124,15 @@ static defaultProps={
             padding:{
                 left:50,
                 right:0,
-                bottom:50,
-                top:50
+                bottom:0,
+                top:0
             }
         },        
     tooltips:{
         enabled: true
     }}}
         />
-      </div>
+       </div>
     );
   }
 }

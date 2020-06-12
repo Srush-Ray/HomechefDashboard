@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class IncomeOrders extends Component {
   state={
     isLoading: true,
@@ -26,13 +27,13 @@ constructor(props) {
        const { id, name, category, subcategory,deliveryTo,amount } = order //destructuring
        return (
           <tr key={id}>
-             <td>{id}</td>
-             <td>{name}</td>
-             <td>{category}</td>
-             <td>{subcategory}</td>
-             <td>{deliveryTo}</td>
-             <td>{amount}</td>
-            <td><button className="btn btn-primary" style={{margin:'2% 2% '}}>Accept</button>
+             <td scope="col">{id}</td>
+             <td scope="col">{name}</td>
+             <td scope="col">{category}</td>
+             <td scope="col">{subcategory}</td>
+             <td scope="col">{deliveryTo}</td>
+             <td scope="col">{amount}</td>
+            <td scope="col"><button className="btn btn-primary" style={{margin:'2% 2% '}}>Accept</button>
             <button className="btn btn-primary">Reject</button></td>
           </tr>
        )
@@ -40,7 +41,7 @@ constructor(props) {
  }
   render(){
     return(
-        <div className="table-responsive-md" >
+        <div className="table-responsive" >
         <table className="table table-hover table-striped">
         <thead className="bg-midnight">
           <tr>
