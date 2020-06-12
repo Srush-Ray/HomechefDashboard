@@ -1,0 +1,40 @@
+Arguments: 
+  /snap/node/2336/bin/node /snap/node/2336/bin/yarn.js config get registry
+
+PATH: 
+  /u01/app/oracle/product/11.2.0/xe/bin:/home/srushti/.local/share/umake/bin:/home/srushti/bin:/home/srushti/.local/bin:/home/srushti/anaconda3/bin:/home/srushti/anaconda3/condabin:/u01/app/oracle/product/11.2.0/xe/bin:/home/srushti/.nvm/versions/node/v8.9.4/bin:/home/srushti/.local/share/umake/bin:/home/srushti/bin:/home/srushti/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/ns-allinone-2.35/xgraph-12.2:/opt/ns-allinone-2.35/bin:/opt/ns-allinone-2.35/tcl8.5.10/unix:/opt/ns-allinone-2.35/tk8.5.10/unix:/opt/ns-allinone-2.35/ns-2.35:/opt/ns-allinone-2.35/nam-1.15:/home/srushti/node-v0.10.33-linux-x64/bin:/opt/ns-allinone-2.35/xgraph-12.2:/opt/ns-allinone-2.35/bin:/opt/ns-allinone-2.35/tcl8.5.10/unix:/opt/ns-allinone-2.35/tk8.5.10/unix:/opt/ns-allinone-2.35/ns-2.35:/opt/ns-allinone-2.35/nam-1.15:/home/srushti/node-v0.10.33-linux-x64/bin
+
+Yarn version: 
+  1.16.0
+
+Node version: 
+  11.15.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, write
+      at writeSync (fs.js:589:3)
+      at SyncWriteStream._write (internal/fs/sync_write_stream.js:22:3)
+      at doWrite (_stream_writable.js:415:12)
+      at writeOrBuffer (_stream_writable.js:399:5)
+      at SyncWriteStream.Writable.write (_stream_writable.js:299:11)
+      at ConsoleReporter._log (/snap/node/2336/lib/cli.js:96002:17)
+      at ConsoleReporter.log (/snap/node/2336/lib/cli.js:95990:10)
+      at get (/snap/node/2336/lib/cli.js:86883:14)
+      at Object.<anonymous> (/snap/node/2336/lib/cli.js:25855:25)
+      at Generator.next (<anonymous>)
+
+npm manifest: 
+  {
+    "name": "dashboard",
+    "version": "0.1.0",
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
