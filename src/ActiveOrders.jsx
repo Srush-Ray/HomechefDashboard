@@ -107,7 +107,6 @@ handle(e) {
             {/* <Input type="text" name="status" value={this.state.status} onChange={this.onChange} required placeholder="Enter a password" />  */}
             <select name="status" value={this.state.value} onChange={this.onChange} style={{width:'100%', height:'40px',borderRadius:'5px'}}>
                     <option value="accepted">Accepted</option>
-                    <option value="deliverd">Delivered</option>
                     <option value="dispatch">Dispatch</option>
                     <option value="rejected">Rejected</option>
             </select>
