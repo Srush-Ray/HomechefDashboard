@@ -16,11 +16,13 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
+    "react-dropdown": "^1.7.0",
     "react-google-location": "^1.2.2",
     "react-icons": "^3.10.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.x",
+    "react-switch": "^5.0.1",
     "react-tabs": "^3.1.1",
     "react-web-tabs": "^1.0.1",
     "resolve-url-loader": "^3.1.1"

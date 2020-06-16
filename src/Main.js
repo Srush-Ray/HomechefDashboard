@@ -6,7 +6,7 @@ import { Nav } from 'react-bootstrap';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import logo1 from './UI/logo1.png'
-
+import Signin from './Signin'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Maps from './Maps'
 import  './Main.css';
@@ -16,12 +16,16 @@ import IncomeOrders from './IncomeOrders'
 import PastOrders from './PastOrders'
 import Financials from './Financials';
 import Analytics from './Analytics';
+import Addmenu from './Addmenu'
+import { ToastContainer, toast } from 'react-toastify';
 
 class Main extends Component{
 
     logOut(e){
         e.preventDefault()
         localStorage.removeItem('usertoken')
+        // alert("Logout!!")
+        toast("Logout!!", {position: toast.POSITION.TOP_CENTER});
     } 
 
     render(){
@@ -30,9 +34,9 @@ class Main extends Component{
             
             <div>
                 <Router>
-                <Navbar collapseOnSelect expand="lg" className="navbar navbar-dark" style={{ marginTop:'8px',marginRight:'10px',marginLeft:'10px', border:'solid',borderRadius:'10px',  backgroundColor:'#a7a7a7'}}>
+                <Navbar collapseOnSelect expand="lg" className="navbar navbar-dark"  style={{ marginTop:'8px',backgroundColor:'#04334F'}}>
                     <Navbar.Brand href="#home"></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{borderColor:"#000000"}} />
+                    <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{borderColor:"#FFF"}} />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <a class="navbar-brand" href="#"><img className='logo' src={logo1} alt='logo' style={{width:'110px', padding:'1px', borderRadius:'10px'}}/></a>
@@ -40,15 +44,17 @@ class Main extends Component{
                         
                         <Nav>
                         <ul className="navbar-nav mr-auto">
-                            <li><Link exact to={'/Maps'} className="nav-link text-dark"><b>Location</b></Link></li>
-                            <li><Link exact to={'/'} onClick={this.logOut.bind(this)} className="nav-link text-dark"><b>Logout</b></Link></li>
-                            <li><Link exact to={'/'} className="nav-link text-dark"><b>Close</b></Link></li>
+                            <li><Link exact to={'/Maps'} className="nav-link text-dark"><b style={{color:'#FFFFFF'}}>Location</b></Link></li>
+                            <li><Link exact to={'/Signin'} className="nav-link text-dark"><b style={{color:'#FFFFFF'}}>Login in</b></Link></li>
+                            <li><Link exact to={'/'} onClick={this.logOut.bind(this)} className="nav-link text-dark"><b style={{color:'#FFFFFF'}}>Logout</b></Link></li>
+                            <li><Link exact to={'/'} className="nav-link text-dark"><b style={{color:'#FFFFFF'}}>Close</b></Link></li>
                         </ul>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
                 <Switch>
                     <Route path='/Maps' component={Maps} />
+                    <Route path='/Signin' component={Signin} />
                     <Route path='/' />
                     <Route path='/' />
                 </Switch>
@@ -61,8 +67,8 @@ class Main extends Component{
                     <TabList style={{marginTop:'10px', fontFamily:'serif',color:'grey', height:'auto',width:'auto'}}>
                     <b>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Profile</Tab>
+                    <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Add Menu</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Active Orders</Tab>
-                    <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Incoming Orders</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Past Orders</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Financials</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Analytics</Tab>
@@ -72,20 +78,20 @@ class Main extends Component{
                     
                 
                     <TabPanel>
-                    <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'15%',marginRight:'15%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}> 
-                    <Profile />
-                    </div>
-                    </TabPanel>
-
-                    <TabPanel>
-                        <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
-                           <ActiveOrders />
+                        <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'15%',marginRight:'15%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}> 
+                            <Profile />
                         </div>
                     </TabPanel>
 
                     <TabPanel>
-                    <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
-                        <IncomeOrders />
+                        <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
+                           <Addmenu />
+                        </div>
+                    </TabPanel>
+
+                    <TabPanel>
+                        <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
+                            <ActiveOrders />
                         </div>
                     </TabPanel>
 

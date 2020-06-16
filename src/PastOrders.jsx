@@ -1,38 +1,59 @@
 import React, { Component } from "react";
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify';
+
 class PastOrders extends Component {
-  state={
-    isLoading: true,
-    dataNew:{
-        username:"Srushti",
-        address:"pune",
-        email:"s@gmail.com",
-        phonenumber:"7896541230",
-    },
-};
+//   state={
+//     isLoading: true,
+//     dataNew:{
+//         username:"Srushti",
+//         address:"pune",
+//         email:"s@gmail.com",
+//         phonenumber:"7896541230",
+//     },
+// };
 
 constructor(props) {
     super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
     this.state = { //state is by default an object
-        orders: [
-          { id: 1, name: 'Srushti', category:'indian' ,subcategory:'gujrati', deliveryTo:'chinchwad',amount:'50' },
-          { id: 2, name: 'rfv', category:'indian' ,subcategory:'south Indian', deliveryTo:'katraj',amount:'150' },
-          { id: 3, name: 'tgb ', category:'chinese' ,subcategory:'', deliveryTo:'nigdi',amount:'550' },
-          { id: 4, name: 'ygfdx', category:'indian' ,subcategory:'gujrati', deliveryTo:'chinchwad',amount:'250' }
-       ]
+        orders: []
     }
  }
+
+ componentDidMount() {   
+        
+  // toast.configure()
+  axios.get('http://localhost:5000/homechef/orders/past', {
+      headers: {
+        'auth-token': localStorage.usertoken
+      }})
+   .then(res => { 
+       if(res.data.status==true){
+          this.setState({orders: res.data.data})
+          }
+          else if(res.data.status==false){
+              // alert("Login First");
+              toast("Login First!!", {position: toast.POSITION.TOP_CENTER});
+          } 
+   })
+   .catch(err => {
+      // alert("Login First!!")
+      toast("Login First!!", {position: toast.POSITION.TOP_CENTER});
+  })
+}
+
  renderTableData() {
-    return this.state.orders.map((order, index) => {
-       const { id, name, category, subcategory,deliveryTo,amount } = order //destructuring
-       return (
-          <tr key={id}>
-             <td>{id}</td>
-             <td>{name}</td>
-             <td>{category}</td>
-             <td>{subcategory}</td>
-             <td>{deliveryTo}</td>
-             <td>{amount}</td>
-          </tr>
+  return this.state.orders.map((order, index) => {
+    const { _id, catogary, subcatogary, paymentType, totalCost, serviceboyid } = order //destructuring
+    return (
+      <tr key={_id}>
+      <td>{_id}</td>
+      <td>{catogary}</td>
+      <td>{subcatogary}</td>
+      <td>{paymentType}</td>
+      <td>{totalCost}</td>
+      <td>{serviceboyid}</td>
+      </tr>
        )
     })
  }
@@ -42,13 +63,12 @@ constructor(props) {
         <table className="table table-hover table-striped">
         <thead className="bg-midnight">
           <tr>
-            <th scope="col">No</th>
-            <th scope="col">Customer</th>
+          <th scope="col">OrderId</th>
             <th scope="col">Category</th>
-            <th scope="col">SubCategory</th>
-            <th scope="col">Delivered To</th>
-            <th scope="col">Amount</th>
-
+            <th scope="col">Subcategory</th>
+            <th scope="col">Payment Type</th>
+            <th scope="col">Total-Amount</th>
+            <th scope="col">Service Boy Id</th>
           </tr>
         </thead>
         <tbody>

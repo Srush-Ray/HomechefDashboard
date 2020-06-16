@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import ExpenseCards from './ExpenseCards';
 import axios from 'axios'
 import { Button, Form, FormGroup, Label, Jumbotron, Input} from 'reactstrap';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap';
 import Product from './Product'
-import { ToastContainer, toast } from 'react-toastify';
 
 class ActiveOrders extends Component {
 
@@ -47,7 +47,6 @@ onChange(e) {
 
 handle(e) {
   console.log(this.state.status);
-  console.log(this.state.orders._id);
   console.log(localStorage.id);
   console.log("clicked");
   axios.put(`http://localhost:5000/homechef/orderstatus/${this.state.status}/${localStorage.id}`,{},
@@ -58,17 +57,14 @@ handle(e) {
             )
             .then(res => {
                 if(res.data.status==true){
-                  //  alert(res.data.data)
-                   toast(res.data.data, {position: toast.POSITION.TOP_CENTER});
+                   alert(res.data.data)
                 }
                 else{
-                    // alert(res.data.error)
-                    toast(res.data.error, {position: toast.POSITION.TOP_CENTER});
+                    alert(res.data.error)
                 }
             })
             .catch(err => {
                 console.log("err")
-                toast(err, {position: toast.POSITION.TOP_CENTER});
             })
 
 }
@@ -77,7 +73,7 @@ handle(e) {
     return this.state.orders.map((order, index) => {
        const { _id, catogary, subcatogary,paymentType,totalCost,serviceboyid } = order //destructuring
        return (
-         <tr key={index}>
+         <tr key={_id}>
          <td>{_id}
          <Nav >
          <p ><Link exact to={'/Product'} className="nav-link "><b>details</b></Link></p>

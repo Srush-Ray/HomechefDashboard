@@ -51,7 +51,6 @@ constructor(props) {
             <th scope="col">SubCategory</th>
             <th scope="col">Delivery To</th>
             <th scope="col">Amount</th>
-
           </tr>
         </thead>
         <tbody>
