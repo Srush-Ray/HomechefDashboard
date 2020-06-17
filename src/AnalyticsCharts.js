@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Bar} from 'react-chartjs-2';
+import { CSVLink } from "react-csv";
 
 
 export default class AnalyticsCharts extends Component {
@@ -7,6 +8,10 @@ export default class AnalyticsCharts extends Component {
 constructor(props){
     super(props);
     this.state={
+        salesperdish : [
+            ['Dish 1', 'Dish 2', 'Dish 3', 'Dish 4', 'Dish 5'] ,
+            [50,70,25,47,90]
+        ],
         chartData:{
             labels:['Dish 1', 'Dish 2', 'Dish 3', 'Dish 4', 'Dish 5'],
             datasets:[{
@@ -62,65 +67,14 @@ static defaultProps={
         enabled: true
     }}}
         />
-
-
-<Pie
-          data={this.state.chartData}
-          options={{
-            responsive:true,
-            title:{
-                display:this.props.displayTitle,
-                text:'Sales per Dish',
-                fontSize:20
-          },
-        legend:{
-            display:true,
-            position: 'right',
-            labels:{
-                fontColor:'#000'
-            }
-        },
-        layout:{
-            padding:{
-                left:50,
-                right:0,
-                bottom:0,
-                top:0
-            }
-        },        
-    tooltips:{
-        enabled: true
-    }}}
-        />
-
-<Line
-          data={this.state.chartData}
-          options={{
-            responsive:true,
-            title:{
-                display:this.props.displayTitle,
-                text:'Sales per Dish',
-                fontSize:20
-          },
-        legend:{
-            display:true,
-            position: 'right',
-            labels:{
-                fontColor:'#000'
-            }
-        },
-        layout:{
-            padding:{
-                left:50,
-                right:0,
-                bottom:0,
-                top:0
-            }
-        },        
-    tooltips:{
-        enabled: true
-    }}}
-        />
+        <div>           
+        <CSVLink data={this.state.salesperdish}
+        filename={"SalesPerDish.csv"}
+        className="btn btn-primary"
+        >
+       Sales Per Dish
+        </CSVLink>
+        </div>
       </div>
     );
   }

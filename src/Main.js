@@ -68,6 +68,7 @@ class Main extends Component{
                     <b>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Profile</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Add Menu</Tab>
+                    <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Incoming Orders</Tab>  
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Active Orders</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Past Orders</Tab>
                     <Tab style={{paddingRight:'3%', paddingLeft:'3%', paddingTop:'15px',paddingBottom:'15px'}}>Financials</Tab>
@@ -87,6 +88,12 @@ class Main extends Component{
                         <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
                            <Addmenu />
                         </div>
+                    </TabPanel>
+                    
+                    <TabPanel>
+                    <div style={{border:'solid',borderRadius:'10px',marginTop:'30px', marginLeft:'10%',marginRight:'10%',paddingBottom:'30px',boxShadow:'5px 5px rgb(167,167,167)'}}>
+                       <IncomeOrders />
+                    </div>
                     </TabPanel>
 
                     <TabPanel>

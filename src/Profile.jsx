@@ -24,12 +24,23 @@ class Profile extends Component {
       status: "true",
     }
     this.onChange = this.onChange.bind(this)
+    this.onChangeStatus = this.onChangeStatus.bind(this)
     this.handle = this.handle.bind(this)
   }
 
+  async onChangeStatus(){
+    let status=document.getElementById("status");
+    console.log(status.checked);
+    await this.setState({ status:status.checked });
+    console.log(this.state.status);
 
+    this.handle();
+  }
   componentDidMount() {
-
+    if(this.state.status){
+      let status=document.getElementById("status");
+      status.checked=this.state.status;
+    }
     axios.get('http://localhost:5000/homechef/profile', {
       headers: {
         'auth-token': localStorage.usertoken
@@ -55,43 +66,38 @@ class Profile extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value})
   }
-  
-  handle(e) {
-    console.log(this.state.status);
-    console.log("clicked");
+  handle(){
     axios.post(`http://localhost:5000/homechef/status/${this.state.status}`,{},
-          {
-              headers: {
-                'auth-token': localStorage.usertoken
-              }},
-              )
-              .then(res => {
-                  if(res.data.status==true){
-                    //  alert(res.data.data)
-                     toast(res.data.data, {position: toast.POSITION.TOP_CENTER});
-                  }
-                  else{
-                      // alert(res.data.error)
-                      toast(res.data.data, {position: toast.POSITION.TOP_CENTER});
-                  }
-              })
-              .catch(err => {
-                  // console.log("err")
-                  toast(err, {position: toast.POSITION.TOP_CENTER});
-              })
-  
+    {
+        headers: {
+          'auth-token': localStorage.usertoken
+        }},
+        )
+        .then(res => {
+            if(res.data.status==true){
+              //  alert(res.data.data)
+               toast(res.data.data, {position: toast.POSITION.TOP_CENTER});
+            }
+            else{
+                // alert(res.data.error)
+                toast(res.data.data, {position: toast.POSITION.TOP_CENTER});
+            }
+        })
+        .catch(err => {
+            // console.log("err")
+            toast(err, {position: toast.POSITION.TOP_CENTER});
+        })
   }
-
-  editform() {
-    var form = document.getElementById("form");
-    var elements = form.elements;
-    for (var i = 0, len = elements.length; i < len; ++i) {
-      elements[i].readOnly = !elements[i].readOnly;
-    }
-    var editButton = document.getElementById("editButton");
-    editButton.classList.toggle("btn-danger");
-    editButton.innerHTML = editButton.innerHTML === "Edit" ? "Cancel" : "Edit";
-  }
+  // editform() {
+  //   var form = document.getElementById("form");
+  //   var elements = form.elements;
+  //   for (var i = 0, len = elements.length; i < len; ++i) {
+  //     elements[i].readOnly = !elements[i].readOnly;
+  //   }
+  //   var editButton = document.getElementById("editButton");
+  //   editButton.classList.toggle("btn-danger");
+  //   editButton.innerHTML = editButton.innerHTML === "Edit" ? "Cancel" : "Edit";
+  // }
 
   render(){
     return(
@@ -101,7 +107,7 @@ class Profile extends Component {
             <h4 className="mt-2"><b>My Profile</b></h4>
             <hr />
              {
-              <form id="form" onSubmit={this.handleSubmit}>
+              <form id="form" >
                 Click edit to fill in the details and update :
                 <hr />
                 <div className="container">
@@ -154,51 +160,29 @@ class Profile extends Component {
                     />
                     </div>
                   </div>
-                  <div className="">
-                  <div>
-                 {/* <div className='custom-control custom-switch'> */}
-                  {/* <input
+                  <div className="form-row my-2">
+                  
+                  <div className='custom-control custom-switch'>
+                  <input
                     type='checkbox'
                     className='custom-control-input'
                     id='status'
-                    readOnly
-                  /> */}
-                  {/* <label className='custom-control-label' htmlFor='status'> */}
-                  <label>
+                    name='status'
+                    onChange={this.onChangeStatus} 
+                  />
+                  <label className='custom-control-label' htmlFor='status'>
                     Availabilty Status
                   </label>
-                  </div> 
-                  <Form>
-                  <FormGroup onSubmit={this.handle}>
-                    <select name="status" value={this.state.value} onChange={this.onChange} style={{width:'20%', height:'40px',borderRadius:'5px'}}>
-                            <option value="true">Available</option>
-                            <option value="false">Unavailable</option>
-                    </select> 
-                    <Button style={{marginLeft:'2%'}} type="Button" onClick={this.handle}>Set</Button>
-                </FormGroup>
-                </Form>
+                </div>
 
                   </div>
                 </div>
-                <div className="text-right">
-                  <button
-                    type="button"
-                    id="editButton"
-                    className="btn btn-secondary"
-                    onClick={this.editform}
-                    style={{marginRight:'2%'}}
-                  >
-                    Edit
-                  </button>
-                  {/* <button className="btn border-dark mx-2" type="reset">
-                    Reset
-                  </button>
-                  <button type="submit" className="btn btn-dark">
-                    Update Profile
-                  </button> */}
-                </div>
+               
               </form>
              }
+             <b> Menu Cooked :</b> <br/>
+             Category :<TagInput />
+             Subcategory :<TagInput1 />
           </div>
       </div>
     </div>
@@ -207,3 +191,49 @@ class Profile extends Component {
 }
 
 export default Profile
+// /**
+// <div className="text-right">
+// <button
+//   type="button"
+//   id="editButton"
+//   className="btn btn-secondary"
+//   onClick={this.editform}
+//   style={{marginRight:'2%'}}
+// >
+//   Edit
+// </button>
+// <button className="btn border-dark mx-2" type="reset">
+//   Reset
+// </button>
+// <button type="submit" className="btn btn-dark">
+//   Update Profile
+// </button> 
+// </div>
+
+//  * <div className="">
+                  
+//                   <div>
+//                  {/* <div className='custom-control custom-switch'> */}
+//                   {/* <input
+//                     type='checkbox'
+//                     className='custom-control-input'
+//                     id='status'
+//                     readOnly
+//                   /> */}
+//                   {/* <label className='custom-control-label' htmlFor='status'> */}
+//                   <label>
+//                     Availabilty Status
+//                   </label>
+//                   </div> 
+//                   <Form>
+//                   <FormGroup onSubmit={this.handle}>
+//                     <select name="status" value={this.state.value} onChange={this.onChange} style={{width:'20%', height:'40px',borderRadius:'5px'}}>
+//                             <option value="true">Available</option>
+//                             <option value="false">Unavailable</option>
+//                     </select> 
+//                     <Button style={{marginLeft:'2%'}} type="Button" onClick={this.handle}>Set</Button>
+//                 </FormGroup>
+//                 </Form>
+
+//                   </div>
+//  */

@@ -4,11 +4,12 @@ import "@pathofdev/react-tag-input/build/index.css";
 import './TagInput.css';
 function TagInput1() {
   const [tags, setTags] = React.useState(["maharashtrian"])
-  const  catgories=['maharashtrian,','gujarati,','kokani'];
+  const  catgories=['maharashtrian','gujarati','kokani'];
+  const list=catgories.join(',')
   return (
     <div>
     <div style={{display: 'flex'}}>
-    {catgories}
+    {list}
      </div>
     <ReactTagInput 
     tags={tags} 

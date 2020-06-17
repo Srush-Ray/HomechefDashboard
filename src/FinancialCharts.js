@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Bar, Line} from 'react-chartjs-2';
+import { CSVLink } from "react-csv";
 
 
 export default class AnalyticsCharts extends Component {
@@ -7,6 +8,14 @@ export default class AnalyticsCharts extends Component {
 constructor(props){
     super(props);
     this.state={
+        incomeExpense : [
+            ['Jan', 'Feb', 'March', 'April', 'May'] ,
+            [30,50,15,33,75]
+        ],
+        sales : [
+            ['Jan', 'Feb', 'March', 'April', 'May'] ,
+            [30,50,15,33,75]
+        ],
         chartData1:{
             labels:['Jan', 'Feb', 'March', 'April', 'May'],
             datasets:[{
@@ -132,6 +141,21 @@ tooltips:{
         enabled: true
     }}}
         />
+        <div>           
+        <CSVLink data={this.state.incomeExpense}
+        filename={"IncomeExpense.csv"}
+        className="btn btn-primary"
+        style={{margin:'1%'}}
+        >
+        Income and expense excel download
+        </CSVLink>
+        <CSVLink data={this.state.incomeExpense}
+        filename={"Sales.csv"}
+        className="btn btn-primary"
+        >
+        Sales excel download
+        </CSVLink>
+        </div>
        </div>
     );
   }
