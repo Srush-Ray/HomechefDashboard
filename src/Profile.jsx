@@ -180,9 +180,7 @@ class Profile extends Component {
                
               </form>
              }
-             <b> Menu Cooked :</b> <br/>
-             Category :<TagInput />
-             Subcategory :<TagInput1 />
+            
           </div>
       </div>
     </div>
